@@ -3,3 +3,4 @@ google-generativeai
 streamlit-folium
 folium
 pillow
+python-dotenv
