@@ -1,9 +1,3 @@
-import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
-
 import streamlit as st
 import google.generativeai as genai
 from PIL import Image
@@ -11,8 +5,9 @@ import folium
 from streamlit_folium import st_folium
 import re
 
-# 1. Setup
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+# 1. Cloud-Safe Setup (No dotenv, No os.getenv)
+# Yeh line ensure karti hai ki key seedha Streamlit ke private vault se aaye, GitHub se nahi.
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel('gemini-2.5-flash')
 
 st.set_page_config(page_title="Heritage Storyteller & Navigator", layout="wide")
